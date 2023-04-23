@@ -42,6 +42,7 @@ func NodeFromProvider(ctx context.Context, name string, taint *v1.Taint, p provi
 				"kubernetes.io/role":     "agent",
 				"beta.kubernetes.io/os":  strings.ToLower(p.OperatingSystem()),
 				"kubernetes.io/hostname": name,
+				"kubernetes.io/vk":       "mu",
 				"alpha.service-controller.kubernetes.io/exclude-balancer": "true",
 			},
 		},

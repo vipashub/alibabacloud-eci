@@ -579,6 +579,9 @@ func (p *ECIProvider) getContainers(pod *v1.Pod, init bool) ([]eci.CreateContain
 
 		c.VolumeMounts = make([]eci.VolumeMount, 0, len(container.VolumeMounts))
 		for _, v := range container.VolumeMounts {
+			if v.MountPath == serviceAccountSecretMountPath {
+				continue
+			}
 			c.VolumeMounts = append(c.VolumeMounts, eci.VolumeMount{
 				Name:      v.Name,
 				MountPath: v.MountPath,
